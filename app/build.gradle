@@ -14,17 +14,62 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    signingConfigs {
+        release {
+            //keystore.jks文件最好放在项目app目录下
+            storeFile file(STOREFILE)
+            storePassword STOREPASSWORD
+            keyAlias KEYALIAS
+            keyPassword STOREPASSWORD
+        }
+        debug {
+            //keystore.jks文件最好放在项目app目录下
+            storeFile file(STOREFILE)
+            storePassword STOREPASSWORD
+            keyAlias KEYALIAS
+            keyPassword STOREPASSWORD
+        }
+    }
     buildTypes {
         release {
-            minifyEnabled false
+            //是否混淆
+            minifyEnabled true
+            //内存对齐
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources true
+            //混淆文件位置
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //签名
+            signingConfig signingConfigs.release
+        }
+        debug {
+            //是否混淆
+            minifyEnabled false
+            //内存对齐
+            zipAlignEnabled false
+            // 移除无用的resource文件
+            shrinkResources false
+            //混淆文件位置
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //签名
+            signingConfig signingConfigs.debug
+        }
+    }
+    productFlavors {
+        flavorDimensions "versionName"
+        pro {
+
+        }
+        dev {
+
         }
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation 'junit:junit:4.12'
