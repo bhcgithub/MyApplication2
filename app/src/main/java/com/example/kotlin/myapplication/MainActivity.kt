@@ -1,12 +1,11 @@
 package com.example.kotlin.myapplication
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+class MainActivity : BaseActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
 //        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         when (v?.id) {
