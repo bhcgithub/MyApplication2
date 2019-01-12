@@ -5,8 +5,7 @@ import com.bugtags.library.Bugtags
 import com.bugtags.library.BugtagsOptions
 
 
-
-class MyApp:Application() {
+class MyApp : Application() {
     override fun onCreate() {
         super.onCreate()
         //在这里初始化
@@ -19,6 +18,6 @@ class MyApp:Application() {
                 trackingBackgroundCrash(true).  //收集 独立进程 crash，默认 false
                 startAsync(false).    //设置 为 true 则 SDK 会在异步线程初始化，节省主线程时间，默认 false
                 build()
-        Bugtags.start(BuildConfig.appKey, this, if (BuildConfig.IS_DEBUG)Bugtags.BTGInvocationEventNone else Bugtags.BTGInvocationEventBubble,options)
+        Bugtags.start(BuildConfig.appKey, this, if (BuildConfig.IS_DEBUG) Bugtags.BTGInvocationEventNone else Bugtags.BTGInvocationEventBubble, options)
     }
 }

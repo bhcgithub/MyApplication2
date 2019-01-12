@@ -42,7 +42,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             //签名
             signingConfig signingConfigs.release
-            buildConfigField "String", "appKey", "\"18a345bba7f5c1badc787b21bd86baeb\""
+            //bugtags设置
+            buildConfigField "String", "appKey", "\"c486abf450ae9db18ce58f1c934d3758\""
             buildConfigField "boolean", "IS_DEBUG", "true"
         }
         debug {
@@ -56,7 +57,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             //签名
             signingConfig signingConfigs.debug
-            buildConfigField "String", "appKey", "\"c486abf450ae9db18ce58f1c934d3758\""
+            //bugtags设置
+            buildConfigField "String", "appKey", "\"18a345bba7f5c1badc787b21bd86baeb\""
             buildConfigField "boolean", "IS_DEBUG", "false"
 
         }
