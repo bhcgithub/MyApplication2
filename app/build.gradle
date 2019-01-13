@@ -11,11 +11,18 @@ android {
         minSdkVersion 15
         targetSdkVersion 28
         versionCode 1
-        versionName "1.0"
+        versionName "1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
         release {
+            //keystore.jks文件最好放在项目app目录下
+            storeFile file(STOREFILE)
+            storePassword STOREPASSWORD
+            keyAlias KEYALIAS
+            keyPassword STOREPASSWORD
+        }
+        ts {
             //keystore.jks文件最好放在项目app目录下
             storeFile file(STOREFILE)
             storePassword STOREPASSWORD
@@ -46,6 +53,21 @@ android {
             buildConfigField "String", "appKey", "\"c486abf450ae9db18ce58f1c934d3758\""
             buildConfigField "boolean", "IS_DEBUG", "true"
         }
+        ts {
+            //是否混淆
+            minifyEnabled true
+            //内存对齐
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources true
+            //混淆文件位置
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //签名
+            signingConfig signingConfigs.debug
+            //bugtags设置
+            buildConfigField "String", "appKey", "\"18a345bba7f5c1badc787b21bd86baeb\""
+            buildConfigField "boolean", "IS_DEBUG", "false"
+        }
         debug {
             //是否混淆
             minifyEnabled false
@@ -70,7 +92,7 @@ android {
             applicationId "com.example.kotlin.myapplication"
             //资源设置
             manifestPlaceholders = [
-                    app_name    : "kotlinPro",
+                    app_name    : "糖糖Pro",
                     app_icon    : "@mipmap/ic_launcher",
                     package_name: applicationId
             ]
@@ -78,7 +100,7 @@ android {
         dev {
             applicationId "com.example.kotlin.dev"
             manifestPlaceholders = [
-                    app_name    : "kotlinDev",
+                    app_name    : "糖糖Dev",
                     app_icon    : "@mipmap/app_launcher",
                     package_name: applicationId
             ]
@@ -99,11 +121,13 @@ dependencies {
     //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     //线上使用，如果不需要使用手动提交 issue，可以选择 metrics 包
-    implementation ('com.bugtags.library:bugtags-lib:latest.integration'){
+    implementation('com.bugtags.library:bugtags-lib:latest.integration') {
         exclude group: 'com.android.support', module: 'support-v4'
     }
 
